@@ -1,6 +1,8 @@
 FROM node:20-bookworm-slim AS build
 WORKDIR /usr/src/app
 COPY . .
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
 RUN npm ci
 RUN npm run build
 
