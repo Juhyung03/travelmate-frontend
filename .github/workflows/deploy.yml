@@ -28,6 +28,8 @@ jobs:
         with:
           push: true
           tags: travelmate7/travelmate-frontend:latest
+          build-args: |
+            REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}
 
   deploy:
     needs: build
