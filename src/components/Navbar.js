@@ -1,10 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import travel_mate_logo from '../assets/images/travel_mate.png';
-import useAuthStore from '../context/useAuthContext';
+import useUser from '../hooks/useUser';
+import { logout } from '../utils/api';
 
 export default function Navbar() {
-  const { user } = useAuthStore((state) => state); // 상태에서 user 정보 가져오기
+  const { user, clearUser } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      clearUser();
+      localStorage.removeItem('user');
+      navigate('/');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
 
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>
@@ -12,16 +25,26 @@ export default function Navbar() {
         <img src={travel_mate_logo} alt='Travel Mate' className='w-36 h-auto' />
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
-        <Link to='/profile'>일정 추천</Link>
+        <Link to='/testpage'>일정 추천</Link>
         <Link to='/test2'>여행지 정보</Link>
         <Link to='/test3'>커뮤니티</Link>
-        <Link to='loginPage' className='flex items-center text-4xl text-brand'>
-          <img
-            src={travel_mate_logo}
-            alt='Travel Mate'
-            className='w-36 h-auto'
-          />
-        </Link>
+        {user ? (
+          <div className='flex items-center gap-2'>
+            <img
+              src={user.profile_image}
+              alt='Profile'
+              className='w-10 h-10 rounded-full'
+            />
+            <span>{user.nickname}</span>
+            <button onClick={handleLogout} className='ml-4 text-sm'>
+              로그아웃
+            </button>
+          </div>
+        ) : (
+          <Link to='/loginPage' className='text-2xl text-brand'>
+            로그인
+          </Link>
+        )}
       </nav>
     </header>
   );
