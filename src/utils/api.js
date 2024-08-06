@@ -17,3 +17,23 @@ export const fetchUserInfo = async () => {
       : new Error('Error fetching user info');
   }
 };
+
+export const logout = async () => {
+  await axios.post(
+    `${API_BASE_URL}/api/logout`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const deleteUser = async () => {
+  await axios.post(
+    `${API_BASE_URL}/users/delete`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
