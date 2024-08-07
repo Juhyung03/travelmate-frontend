@@ -7,7 +7,7 @@ export const onKakaoLogin = () => {
 
 export const fetchUserInfo = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/auth/info`, {
+    const response = await axios.get(`${API_BASE_URL}/users`, {
       withCredentials: true,
     });
     return response.data;
@@ -20,7 +20,7 @@ export const fetchUserInfo = async () => {
 
 export const logout = async () => {
   await axios.post(
-    `${API_BASE_URL}/api/logout`,
+    `${API_BASE_URL}/logout`,
     {},
     {
       withCredentials: true,
