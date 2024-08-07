@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import travel_mate_logo from '../assets/images/travel_mate.png';
 import useUser from '../hooks/useUser';
-import { logout } from '../utils/api';
+import { logout, deleteUser } from '../utils/api';
 
 export default function Navbar() {
   const { user, clearUser } = useUser();
@@ -11,6 +11,17 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await logout();
+      clearUser();
+      localStorage.removeItem('user');
+      navigate('/');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      await deleteUser();
       clearUser();
       localStorage.removeItem('user');
       navigate('/');
@@ -28,6 +39,9 @@ export default function Navbar() {
         <Link to='/testpage'>일정 추천</Link>
         <Link to='/test2'>여행지 정보</Link>
         <Link to='/test3'>커뮤니티</Link>
+        <button onClick={handleDeleteUser} className='ml-4 text-sm'>
+          회원탈퇴
+        </button>
         {user ? (
           <div className='flex items-center gap-2'>
             <img
