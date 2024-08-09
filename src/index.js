@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import Home from './pages/HomePage';
 import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
 import InfoMain from "./pages/InfoMain";
 import InfoArea from "./pages/InfoArea";
 import InfoPlace from"./pages/InfoPlace";
@@ -23,10 +22,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, path: '/', element: <Home /> },
       { path: '/loginPage', element: <LoginPage /> },
-      {
-        path: '/profile',
-        element: <Profile />,
-      },
       {
         path: '/InfoMain',
         element: <InfoMain />,
