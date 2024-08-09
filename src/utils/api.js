@@ -18,7 +18,6 @@ export const fetchUserInfo = async () => {
   }
 };
 
-
 export const fetchRegions = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/tourspot/regions`, {
@@ -83,6 +82,7 @@ export const fetchTourPlace = async (tourSpotId) => {
       ? error.response.data
       : new Error('Error fetching tourPlace info');
   }
+};  // 이 부분에서 닫는 중괄호를 추가했습니다.
 
 export const logout = async () => {
   await axios.post(
@@ -102,5 +102,4 @@ export const deleteUser = async () => {
       withCredentials: true,
     }
   );
-
 };
