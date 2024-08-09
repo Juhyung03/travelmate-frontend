@@ -7,7 +7,7 @@ export const onKakaoLogin = () => {
 
 export const fetchUserInfo = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/auth/info`, {
+    const response = await axios.get(`${API_BASE_URL}/users`, {
       withCredentials: true,
     });
     return response.data;
@@ -17,6 +17,7 @@ export const fetchUserInfo = async () => {
       : new Error('Error fetching user info');
   }
 };
+
 
 export const fetchRegions = async () => {
   try {
@@ -82,4 +83,24 @@ export const fetchTourPlace = async (tourSpotId) => {
       ? error.response.data
       : new Error('Error fetching tourPlace info');
   }
+
+export const logout = async () => {
+  await axios.post(
+    `${API_BASE_URL}/logout`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const deleteUser = async () => {
+  await axios.post(
+    `${API_BASE_URL}/users/delete`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
 };
