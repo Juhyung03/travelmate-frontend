@@ -13,7 +13,7 @@ export default function Navbar() {
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
         <Link to='/profile'>일정 추천</Link>
-        <Link to='/test2'>여행지 정보</Link>
+        <Link to='/InfoMain'>여행지 정보</Link>
         <Link to='/test3'>커뮤니티</Link>
         <Link to='loginPage' className='flex items-center text-4xl text-brand'>
           <img

@@ -17,3 +17,69 @@ export const fetchUserInfo = async () => {
       : new Error('Error fetching user info');
   }
 };
+
+export const fetchRegions = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tourspot/regions`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error('Error fetching regions info');
+  }
+};
+
+export const fetchDistricts = async (regionId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tourspot/regions/${regionId}/districts`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error('Error fetching districts info');
+  }
+};
+
+export const fetchThemes = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tourspot/themes`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error('Error fetching themes info');
+  }
+};
+
+export const fetchTourismInfo = async (query) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tourspots`, {
+      withCredentials: true,
+      params: query,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error('Error fetching tourismInfo info');
+  }
+};
+
+export const fetchTourPlace = async (tourSpotId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/tourspots/${tourSpotId}`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error('Error fetching tourPlace info');
+  }
+};
