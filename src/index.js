@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import Home from './pages/HomePage';
 import NotFound from './pages/NotFound';
-import LoginPage from './pages/LoginPage';
 import Profile from './pages/Profile';
 import InfoMain from "./pages/InfoMain";
 import InfoArea from "./pages/InfoArea";
